@@ -86,14 +86,20 @@ button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-of
 <div id="toast"></div>
 
 <script>
+// Put your own values here so you never have to use the Setup screen:
+// token: your Mapbox public token, starts with pk.
+// style: your style URL, looks like mapbox://styles/yourusername/yourstyleid
+const DEFAULT_TOKEN = 'pk.eyJ1IjoiY3liZXJwdW5rbWFwNzciLCJhIjoiY211ZjFoNGt6MDFvdDQ4cHJreXd4Y3piOSJ9.O4qeYZGAKKg7vHCkiayVTw';
+const DEFAULT_STYLE = 'mapbox://styles/cyberpunkmap77/cmuf24crt00dm01sqcg7s4sq3';
+
 const IMPERIAL = true; // set false for km and meters
 const $ = id => document.getElementById(id);
 const store = {
   get(k){ try{ return localStorage.getItem(k) || ''; }catch(e){ return ''; } },
   set(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
 };
-let token = store.get('mm_token');
-let styleUrl = store.get('mm_style') || 'mapbox://styles/mapbox/dark-v11';
+let token = store.get('mm_token') || DEFAULT_TOKEN;
+let styleUrl = store.get('mm_style') || DEFAULT_STYLE || 'mapbox://styles/mapbox/dark-v11';
 
 function toast(m){
   const t = $('toast'); t.textContent = m; t.style.display = 'block';
